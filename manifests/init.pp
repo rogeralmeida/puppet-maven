@@ -16,27 +16,27 @@ class maven {
   }
 
   exec { 'Extract maven':
-    cwd     => '/usr/local',
+    cwd     => '/opt/boxen/apache-maven',
     command => "tar xvf /tmp/apache-maven-${version}-bin.tar.gz",
-    creates => "/usr/local/apache-maven-${version}",
+    creates => "/opt/boxen/apache-maven/apache-maven-${version}",
     path    => ['/usr/bin'],
     require => Exec['Fetch maven'];
   }
 
-  file { "/usr/local/apache-maven-${version}":
+  file { "/opt/boxen/apache-maven/apache-maven-${version}":
     require => Exec['Extract maven'];
   }
 
-  file { '/usr/local/maven':
+  file { '/opt/boxen/apache-maven/maven':
     ensure  => link,
-    target  => "/usr/local/apache-maven-${version}",
-    require => File["/usr/local/apache-maven-${version}"];
+    target  => "/opt/boxen/apache-maven/apache-maven-${version}",
+    require => File["/usr/boxen/apache-maven/apache-maven-${version}"];
   }
   
   file { '/opt/boxen/bin/mvn': 
     ensure => link,
-    target  => '/usr/local/maven/bin/mvn',
-    require => File['/usr/local/maven'];
+    target  => '/opt/boxen/apache-maven/maven/bin/mvn',
+    require => File['/opt/boxen/apache-maven/maven'];
   }
 
 }
