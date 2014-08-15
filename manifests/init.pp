@@ -15,7 +15,7 @@ class maven {
     path    => ['/opt/boxen/homebrew/bin'];
   }
 
-  file { "/op/boxen/apache-maven":
+  file { "/opt/boxen/apache-maven":
     ensure => "directory",
     require => Exec['Fetch maven'],
   }
