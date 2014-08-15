@@ -10,7 +10,7 @@ class maven {
   
   file { "/op/boxen/apache-maven":
     ensure => "directory",
-    require => Exec['Extract Maven'],
+    require => Exec['Fetch Maven'],
   }
 
   exec { 'Fetch maven':
