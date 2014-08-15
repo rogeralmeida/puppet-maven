@@ -7,6 +7,11 @@ class maven {
     ensure => present,
     require => Exec['Fetch maven'],
   }
+  
+  file { "/op/boxen/apache-maven":
+    ensure => "directory",
+    require => Exec['Extract Maven'],
+  }
 
   exec { 'Fetch maven':
     cwd => '/tmp',
