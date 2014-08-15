@@ -35,7 +35,7 @@ class maven {
   file { '/opt/boxen/apache-maven/maven':
     ensure  => link,
     target  => "/opt/boxen/apache-maven/apache-maven-${version}",
-    require => File["/usr/boxen/apache-maven/apache-maven-${version}"];
+    require => File["/opt/boxen/apache-maven/apache-maven-${version}"];
   }
   
   file { '/opt/boxen/bin/mvn': 
