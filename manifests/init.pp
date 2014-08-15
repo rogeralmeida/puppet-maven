@@ -7,11 +7,6 @@ class maven {
     ensure => present,
     require => Exec['Fetch maven'],
   }
-  
-  file { "/op/boxen/apache-maven":
-    ensure => "directory",
-    require => Exec['Fetch Maven'],
-  }
 
   exec { 'Fetch maven':
     cwd => '/tmp',
@@ -20,12 +15,17 @@ class maven {
     path    => ['/opt/boxen/homebrew/bin'];
   }
 
+  file { "/op/boxen/apache-maven":
+    ensure => "directory",
+    require => Exec['Fetch maven'],
+  }
+
   exec { 'Extract maven':
     cwd     => '/opt/boxen/apache-maven',
     command => "tar xvf /tmp/apache-maven-${version}-bin.tar.gz",
     creates => "/opt/boxen/apache-maven/apache-maven-${version}",
     path    => ['/usr/bin'],
-    require => Exec['Fetch maven'];
+    require => File['/opt/boxen/apache-maven'];
   }
 
   file { "/opt/boxen/apache-maven/apache-maven-${version}":
