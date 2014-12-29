@@ -1,7 +1,7 @@
 class maven {
 
   require wget
-  $version = '3.2.2'
+  $version = '3.2.5'
 
   file { "/tmp/apache-maven-${version}-bin.tar.gz":
     ensure => present,
