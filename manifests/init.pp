@@ -10,7 +10,7 @@ class maven {
 
   exec { 'Fetch maven':
     cwd => '/tmp',
-    command => "wget http://apache.komsys.org/maven/maven-3/${version}/binaries/apache-maven-${version}-bin.tar.gz",
+    command => "wget http://ftp.unicamp.br/pub/apache/maven/maven-3/${version}/binaries/apache-maven-${version}-bin.tar.gz",
     creates => "/tmp/apache-maven-${version}-bin.tar.gz",
     path    => ['/opt/boxen/homebrew/bin'];
   }
